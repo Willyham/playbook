@@ -7,21 +7,24 @@ define([
 
             el: $('#sideNav'),
             template: _.template('<div id="addPlay">New Play</div>'),
+            _playbookView: null,
 
             events: {
                 'click #addPlay': 'addPlay'
             },
 
-            initialize: function(){
+            initialize: function(playbook){
+                this._playbookView = new PlaybookView(playbook);
             },
 
             render: function(){
-                var playbookView = new PlaybookView();
-                this.$el.html(playbookView.render()).append(this.template());
+                this.$el.append(this.template());
             },
 
             addPlay: function(){
-                console.log(1);
+                this._playbookView.addPlay({
+                    name: 'testing'
+                })
             }
         });
         return SideView;

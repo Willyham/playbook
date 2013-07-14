@@ -6,7 +6,7 @@ define(['backbone','Views/SideView', 'Collections/Playbook'], function(Backbone,
 
                 var playbook = new Playbook();
 
-                var sideView = new SideView();
+                var sideView = new SideView(playbook);
                 sideView.render();
             }
         }
