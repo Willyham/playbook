@@ -22,12 +22,14 @@ require.config({
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone-amd/backbone',
         underscore: '../bower_components/underscore-amd/underscore',
-        bootstrap: 'vendor/bootstrap'
+        bootstrap: 'vendor/bootstrap',
+        localstorage: '../bower_components/backbone.localStorage'
     }
 });
 
 require([
-    'backbone'
-], function (Backbone) {
-    Backbone.history.start();
+    'PlaybookApp'
+], function (PlaybookApp) {
+    var app = new PlaybookApp();
+    app.init();
 });
