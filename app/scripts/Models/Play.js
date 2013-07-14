@@ -3,9 +3,7 @@ define([
     'underscore',
     'backbone'], function($,_,Backbone){
         var Play = Backbone.Model.extend({
-            validate: function(){
-                return true;
-            }
+            url: '/play'
         });
         return Play;
     }

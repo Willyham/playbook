@@ -2,9 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'Models/Play'], function($,_,Backbone, Play){
+    'Models/Play',
+    'localstorage'], function($,_,Backbone, Play){
         var Playbook = Backbone.Collection.extend({
-            model: Play
+            model: Play,
+            localStorage: new Backbone.LocalStorage("Playbook")
         });
         return Playbook;
     }

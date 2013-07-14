@@ -25,7 +25,7 @@ define([
             },
 
             addPlay: function(model){
-                this.collection.add(model);
+                this.collection.create(model);
             }
         });
         return PlaybookView;

@@ -8,6 +8,10 @@ define(['backbone','Views/SideView', 'Collections/Playbook'], function(Backbone,
 
                 var sideView = new SideView(playbook);
                 sideView.render();
+
+                playbook.fetch();
+
+                Backbone.history.start();
             }
         }
     }
