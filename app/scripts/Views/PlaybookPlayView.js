@@ -5,7 +5,7 @@ define([
         var PlaybookPlayView = Backbone.View.extend({
 
             tagName:'li',
-            template: _.template('Play: <%= name %> <span class="delete">[X]</span>'),
+            template: _.template('<a href="/plays/<%= id %>"><%= name %></a><span class="delete">[X]</span>'),
             model: null,
 
             events: {
@@ -13,13 +13,17 @@ define([
             },
 
             render: function(){
-                this.$el.html(this.template(this.model.attributes));
+                this.$el.html(this.template(this.model.toJSON()));
                 return this.$el;
             },
 
             removePlay: function(){
                 this.$el.remove();
                 this.model.destroy();
+            },
+
+            selectPlay: function(){
+                console.log(1);
             }
         });
         return PlaybookPlayView;

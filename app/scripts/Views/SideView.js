@@ -24,9 +24,7 @@ define([
             },
 
             addPlay: function(){
-                var play = new Play({
-                    name: 'test play!'
-                });
+                var play = new Play();
                 this._playbookView.addPlay(play);
             }
         });

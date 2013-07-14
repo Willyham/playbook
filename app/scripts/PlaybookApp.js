@@ -1,4 +1,4 @@
-define(['backbone','Views/SideView', 'Collections/Playbook'], function(Backbone, SideView, Playbook) {
+define(['backbone','Views/SideView', 'Collections/Playbook', 'Views/PitchView'], function(Backbone, SideView, Playbook, PitchView) {
     return function(){
 
         return {
@@ -8,6 +8,9 @@ define(['backbone','Views/SideView', 'Collections/Playbook'], function(Backbone,
 
                 var sideView = new SideView(playbook);
                 sideView.render();
+
+                var pitchView = new PitchView(playbook);
+                pitchView.render();
 
                 playbook.fetch();
 
