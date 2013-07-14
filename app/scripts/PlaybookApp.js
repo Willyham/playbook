@@ -1,13 +1,13 @@
-define(['backbone','Views/PlaybookView'], function(Backbone, PlaybookView) {
+define(['backbone','Views/SideView', 'Collections/Playbook'], function(Backbone, SideView, Playbook) {
     return function(){
 
         return {
             init: function(){
 
-                var $body = $('body');
-                var playbookView = new PlaybookView();
-                $body.html(playbookView.render());
+                var playbook = new Playbook();
 
+                var sideView = new SideView();
+                sideView.render();
             }
         }
     }

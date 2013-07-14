@@ -5,7 +5,6 @@ define([
         var PlaybookView = Backbone.View.extend({
 
             tagName:'ul',
-            className:'nav nav-list',
             template: _.template('test'),
 
             initialize: function(){
@@ -16,6 +15,10 @@ define([
                 var data = this.template();
                 this.$el.append(data);
                 return this.$el;
+            },
+
+            addPlay: function(){
+                console.log(1);
             }
         });
         return PlaybookView;
