@@ -1,5 +1,5 @@
 define([
-    'jQuery',
+    'jquery',
     'underscore',
     'backbone'], function($,_,Backbone){
         var PlaybookView = Backbone.View.extend({

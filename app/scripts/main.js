@@ -28,8 +28,10 @@ require.config({
 });
 
 require([
+    'backbone',
+    'jquery',
     'PlaybookApp'
-], function (PlaybookApp) {
+], function (Backbone, $, PlaybookApp) {
     var app = new PlaybookApp();
     app.init();
 });
