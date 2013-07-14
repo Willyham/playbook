@@ -1,23 +1,27 @@
 define([
     'jquery',
     'underscore',
-    'backbone'], function($,_,Backbone){
+    'backbone',
+    'Views/PlaybookPlayView'], function($,_,Backbone,PlaybookPlayView){
         var PlaybookView = Backbone.View.extend({
 
             tagName:'ul',
-            template: _.template('Play: <%= name %>'),
             collection: null,
 
-            initialize: function( playbook ){
+            initialize: function(playbook){
                 this.collection = playbook;
-                this.listenTo(this.collection, 'add', this.render);
+                this.listenTo(this.collection, 'add', this.renderPlay);
             },
 
-            render: function(model){
-                debugger;
-                var data = this.template(model);
-                this.$el.append(data);
+            render: function(){
                 return this.$el;
+            },
+
+            renderPlay: function(model){
+                var listItem = new PlaybookPlayView({
+                    model: model
+                });
+                this.$el.append(listItem.render());
             },
 
             addPlay: function(model){

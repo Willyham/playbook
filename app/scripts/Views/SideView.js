@@ -2,7 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'Views/PlaybookView'], function($,_,Backbone, PlaybookView){
+    'Views/PlaybookView',
+    'Models/Play'], function($,_,Backbone, PlaybookView, Play){
         var SideView = Backbone.View.extend({
 
             el: $('#sideNav'),
@@ -18,13 +19,15 @@ define([
             },
 
             render: function(){
+                this.$el.append(this._playbookView.render());
                 this.$el.append(this.template());
             },
 
             addPlay: function(){
-                this._playbookView.addPlay({
-                    name: 'testing'
-                })
+                var play = new Play({
+                    name: 'test play!'
+                });
+                this._playbookView.addPlay(play);
             }
         });
         return SideView;

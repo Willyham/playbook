@@ -1,8 +1,11 @@
 define([
     'jquery',
     'underscore',
-    'backbone'], function($,_,Backbone){
-        var Playbook = Backbone.Collection.extend({});
+    'backbone',
+    'Models/Play'], function($,_,Backbone, Play){
+        var Playbook = Backbone.Collection.extend({
+            model: Play
+        });
         return Playbook;
     }
 );
