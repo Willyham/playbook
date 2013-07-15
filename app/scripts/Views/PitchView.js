@@ -8,16 +8,8 @@ define([
             collection: null,
             template: _.template('<h2><%= name %></h2>'),
 
-            initialize: function(playbook){
-                this.collection = playbook;
-            },
-
-            render: function(){
+            render: function( model ){
                 return this.$el;
-            },
-
-            addPlay: function(model){
-                this.collection.create(model);
             }
         });
         return PitchView;

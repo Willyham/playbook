@@ -9,7 +9,7 @@ define(['backbone','Views/SideView', 'Collections/Playbook', 'Views/PitchView'],
                 var sideView = new SideView(playbook);
                 sideView.render();
 
-                var pitchView = new PitchView(playbook);
+                var pitchView = new PitchView();
                 pitchView.render();
 
                 playbook.fetch();
