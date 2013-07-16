@@ -47,6 +47,20 @@ body{
     padding: 10px 0 25px 0;
     overflow-y: auto;
 
+    & #addPlay{
+        padding-left: 20px;
+
+        & i{
+           margin-right: 20px;
+        }
+
+        &:hover{
+            cursor: pointer;
+            background: url(/../images/sidebar_hover.png) repeat-x;
+            color: #228b22;
+        }
+    }
+
     & h3{
         padding-left: 25px;
         display: block;
@@ -56,6 +70,60 @@ body{
         font-weight: bold;
         text-shadow: 0 2px 0 rgba(0,0,0,0.3);
         text-transform: uppercase;
+    }
+
+    & em{
+        color: #a7a7b3;
+        font-size: 11px;
+        font-weight: 400;
+        margin-left: 8px;
+    }
+
+    & ul{
+        list-style-type: none;
+        margin: 0;
+
+        & li{
+            height: 29px;
+            font-size: 13px;
+            line-height: 29px;
+
+            &:hover{
+                background: url(/../images/sidebar_hover.png) repeat-x;
+            }
+
+            & a{
+                color: #fdfdfe;
+                text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+                text-decoration: none;
+                font-size: 13px;
+                font-weight: normal;
+            }
+
+            & .icon-move{
+                margin-left: 20px;
+                margin-right: 20px;
+                cursor: move;
+            }
+
+            & .playActions{
+                position: absolute;
+                right: 20px;
+            }
+
+            & .playAction{
+                cursor: pointer;
+
+                &:hover{
+                    color: deepskyblue;
+                    font-weight: bold;
+                }
+
+                &.delete:hover{
+                    color: crimson;
+                }
+            }
+        }
     }
 }
 

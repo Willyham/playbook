@@ -7,7 +7,7 @@ define([
         var SideView = Backbone.View.extend({
 
             el: $('#sideNav'),
-            template: _.template('<div id="addPlay">New Play</div>'),
+            template: _.template('<h3 id="addPlay"><i class="icon-plus"></i>Create New Play</h3>'),
             _playbookView: null,
 
             events: {
