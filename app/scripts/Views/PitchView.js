@@ -9,7 +9,11 @@ define([
             _model: null,
 
             listenToModel: function(){
-                this.listenTo(this._model, 'destroy', this.clearPlay);
+                var self = this;
+                this.listenTo(this._model, 'destroy', function(){
+                    self.clearPlay();
+                    self.render();
+                });
                 this.listenTo(this._model, 'change', this.render);
             },
 
@@ -19,6 +23,9 @@ define([
             },
 
             setPlay: function(model){
+                if(!_.isNull(this._model)){
+                    this.clearPlay();
+                }
                 this._model = model;
                 this.listenToModel();
             },
