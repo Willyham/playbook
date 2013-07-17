@@ -26,6 +26,17 @@ define([
 
             addPlay: function(model){
                 this.collection.create(model);
+            },
+
+            selectPlay: function(model){
+                this.collection.forEach(function(play){
+                    play.set('selected', false);
+                    if(play.hasChanged()){
+                        play.save();
+                    }
+                });
+                model.set('selected', true);
+                model.save();
             }
         });
         return PlaybookView;

@@ -26,6 +26,10 @@ define([
             addPlay: function(){
                 var play = new Play();
                 this._playbookView.addPlay(play);
+            },
+
+            selectPlay: function(model){
+                this._playbookView.selectPlay(model);
             }
         });
         return SideView;

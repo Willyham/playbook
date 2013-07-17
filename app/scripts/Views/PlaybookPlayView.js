@@ -5,7 +5,7 @@ define([
         var PlaybookPlayView = Backbone.View.extend({
 
             tagName:'li',
-            template: _.template('<i class="icon-move"></i><a href="#/play/<%= id %>"><%= name %></a><span class="playActions"><em class="playAction copy">copy</em><em class="playAction delete">delete</em></span>'),
+            template: _.template('<%= selected %><i class="icon-move"></i><a href="#/play/<%= id %>"><%= name %></a><span class="playActions"><em class="playAction copy">copy</em><em class="playAction delete">delete</em></span>'),
             model: null,
 
             initialize: function(){
@@ -18,10 +18,7 @@ define([
             },
 
             render: function(){
-                this.$el.html(this.template({
-                    id: this.model.get('id'),
-                    name: this.model.get('name')
-                }));
+                this.$el.html(this.template(this.model.toJSON()));
                 return this.$el;
             },
 

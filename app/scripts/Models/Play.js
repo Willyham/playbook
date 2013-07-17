@@ -5,7 +5,8 @@ define([
         var Play = Backbone.Model.extend({
             defaults: {
                 name: 'New Play',
-                type: 'football'
+                type: 'football',
+                selected: false
             }
         });
         return Play;

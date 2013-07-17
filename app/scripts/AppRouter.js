@@ -23,6 +23,7 @@ define([
                 if(_.isUndefined(model)){
                     return;
                 }
+                this._sideView.selectPlay(model);
                 this._pitchView.setPlay(model);
                 this._pitchView.render();
             }
