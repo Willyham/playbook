@@ -5,7 +5,7 @@ define([
         var PlaybookPlayView = Backbone.View.extend({
 
             tagName:'li',
-            template: _.template('<i class="icon-move"></i><a href="/plays/<%= id %>"><%= name %></a><span class="playActions"><em class="playAction copy">copy</em><em class="playAction delete">delete</em></span>'),
+            template: _.template('<i class="icon-move"></i><a href="#/play/<%= id %>"><%= name %></a><span class="playActions"><em class="playAction copy">copy</em><em class="playAction delete">delete</em></span>'),
             model: null,
 
             initialize: function(){

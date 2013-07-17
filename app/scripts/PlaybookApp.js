@@ -1,4 +1,4 @@
-define(['backbone','Views/SideView', 'Collections/Playbook', 'Views/PitchView'], function(Backbone, SideView, Playbook, PitchView) {
+define(['backbone','AppRouter','Collections/Playbook','Views/SideView','Views/PitchView'], function(Backbone, AppRouter, Playbook, SideView, PitchView) {
     return function(){
 
         return {
@@ -6,15 +6,25 @@ define(['backbone','Views/SideView', 'Collections/Playbook', 'Views/PitchView'],
 
                 var playbook = new Playbook();
 
+                // Create and render side view
                 var sideView = new SideView(playbook);
                 sideView.render();
 
+                // Create and render the pitch view
                 var pitchView = new PitchView();
                 pitchView.render();
 
-                playbook.fetch();
+                // Fetch the playbook after creating the views so that add is called
+                var loadPlaybook = playbook.fetch();
 
-                Backbone.history.start();
+                loadPlaybook.done(function(){
+
+                    // Create router
+                    var appRouter = new AppRouter(playbook, sideView, pitchView);
+
+                    // Start 'em up
+                    Backbone.history.start();
+                });
             }
         }
     }
