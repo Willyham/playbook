@@ -20,7 +20,11 @@ define([
 
             openPlay: function(id){
                 var model = this._playbook.get(id);
-                console.log(model);
+                if(_.isUndefined(model)){
+                    return;
+                }
+                this._pitchView.setPlay(model);
+                this._pitchView.render();
             }
         });
         return AppRouter;
