@@ -47,6 +47,10 @@ body{
     padding: 10px 0 25px 0;
     overflow-y: auto;
 
+    & .selected{
+        background: url(/../images/sidebar_hover.png) repeat-x;
+    }
+
     & #addPlay{
         padding-left: 20px;
 
