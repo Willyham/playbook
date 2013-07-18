@@ -138,4 +138,16 @@ body{
     width: 85%;
     height: 100%;
     background-color: #00A000;
+
+    & .pitchDetails {
+        padding: 10px;
+
+        & input {
+            box-shadow: none;
+            border: 0px;
+            border-bottom: 3px solid green;
+            color: #efefef;
+            background: transparent;
+        }
+    }
 }
