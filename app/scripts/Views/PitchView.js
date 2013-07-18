@@ -1,12 +1,13 @@
 define([
     'jquery',
     'underscore',
-    'backbone'], function($,_,Backbone){
+    'backbone',
+    'Views/PitchDetailsView'], function($,_,Backbone, PitchDetailsView){
         var PitchView = Backbone.View.extend({
 
             el: $('#pitch'),
-            template: _.template('<h2><%= name %></h2>'),
             _model: null,
+            _pitchDetailsView: null,
 
             listenToModel: function(){
                 var self = this;
@@ -18,6 +19,9 @@ define([
             },
 
             clearPlay: function(){
+                if(!_.isNull(this._pitchDetailsView)){
+                    this._pitchDetailsView.remove();
+                }
                 this.stopListening(this._model);
                 this._model = null;
             },
@@ -34,7 +38,8 @@ define([
                 this.$el.empty();
                 // If we have a model, draw it.
                 if(!_.isNull(this._model)){
-                    this.$el.append(this.template(this._model.toJSON()));
+                    this._pitchDetailsView = new PitchDetailsView(this._model);
+                    this.$el.append(this._pitchDetailsView.render());
                 }
                 return this.$el;
             }
