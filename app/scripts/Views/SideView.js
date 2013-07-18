@@ -19,8 +19,8 @@ define([
             },
 
             render: function(){
-                this.$el.append(this._playbookView.render());
-                this.$el.append(this.template());
+                this.$el.prepend(this.template());
+                this.$el.prepend(this._playbookView.render());
             },
 
             addPlay: function(){

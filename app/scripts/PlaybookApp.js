@@ -1,4 +1,10 @@
-define(['backbone','AppRouter','Collections/Playbook','Views/SideView','Views/PitchView'], function(Backbone, AppRouter, Playbook, SideView, PitchView) {
+define([
+    'backbone',
+    'AppRouter',
+    'Collections/Playbook',
+    'Views/SideView',
+    'Views/PitchView',
+    'Views/ToolboxView'], function(Backbone, AppRouter, Playbook, SideView, PitchView, ToolboxView) {
     return function(){
 
         return {
@@ -9,6 +15,9 @@ define(['backbone','AppRouter','Collections/Playbook','Views/SideView','Views/Pi
                 // Create and render side view
                 var sideView = new SideView(playbook);
                 sideView.render();
+
+                var toolbox = new ToolboxView();
+                toolbox.render();
 
                 // Create and render the pitch view
                 var pitchView = new PitchView();

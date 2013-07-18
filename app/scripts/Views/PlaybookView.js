@@ -6,7 +6,8 @@ define([
     'Models/Play'], function($,_,Backbone,PlaybookPlayView,Play){
         var PlaybookView = Backbone.View.extend({
 
-            tagName:'ul',
+            el: $('#playbook'),
+            template: _.template('<h3>New Playbook <em>football</em></h3><ul id="playlist"></ul>'),
             collection: null,
 
             events: {
@@ -19,14 +20,14 @@ define([
             },
 
             render: function(){
-                return this.$el;
+                return this.$el.html(this.template());
             },
 
             renderPlay: function(model){
                 var listItem = new PlaybookPlayView({
                     model: model
                 });
-                this.$el.append(listItem.render());
+                this.$el.find('#playlist').append(listItem.render());
             },
 
             addPlay: function(model){
