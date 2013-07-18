@@ -30,6 +30,10 @@ define([
 
             selectPlay: function(model){
                 this._playbookView.selectPlay(model);
+            },
+
+            copyPlay: function(){
+                console.log('test');
             }
         });
         return SideView;
