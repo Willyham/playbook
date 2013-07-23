@@ -138,7 +138,18 @@ body{
 
     & #toolbox{
         padding-top: 20px;
+
+        & #playerList{
+            padding-left: 20px;
+        }
     }
+}
+
+.player {
+    background: #efefef;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 #pitch {
@@ -150,7 +161,10 @@ body{
     background-color: #00A000;
 
     & .pitchDetails {
+        display: inline-block;
+        position: relative;
         padding: 10px;
+        top: 0;
 
         & input {
             box-shadow: none;

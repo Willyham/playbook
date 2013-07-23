@@ -5,6 +5,7 @@ define([
         var PitchDetailsView = Backbone.View.extend({
 
             className: 'pitchDetails',
+            tagName: 'span',
             template: _.template('<h2><input type="text" value="<%= name %>"/></h2>'),
             _model: null,
 
