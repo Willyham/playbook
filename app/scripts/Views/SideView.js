@@ -3,7 +3,9 @@ define([
     'underscore',
     'backbone',
     'Views/PlaybookView',
-    'Models/Play'], function($,_,Backbone, PlaybookView, Play){
+    'Views/ToolboxView',
+    'Models/Play',
+    'Models/Player'], function($,_,Backbone, PlaybookView, ToolboxView, Play, Player){
         var SideView = Backbone.View.extend({
 
             el: $('#sideNav'),
@@ -21,6 +23,10 @@ define([
             render: function(){
                 this.$el.prepend(this.template());
                 this.$el.prepend(this._playbookView.render());
+
+                var toolbox = new ToolboxView();
+                toolbox.render();
+                toolbox.addDummyPlayers();
             },
 
             addPlay: function(){
@@ -30,10 +36,6 @@ define([
 
             selectPlay: function(model){
                 this._playbookView.selectPlay(model);
-            },
-
-            copyPlay: function(){
-                console.log('test');
             }
         });
         return SideView;

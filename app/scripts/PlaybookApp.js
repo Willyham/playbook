@@ -16,9 +16,6 @@ define([
                 var sideView = new SideView(playbook);
                 sideView.render();
 
-                var toolbox = new ToolboxView();
-                toolbox.render();
-
                 // Create and render the pitch view
                 var pitchView = new PitchView();
                 pitchView.render();
