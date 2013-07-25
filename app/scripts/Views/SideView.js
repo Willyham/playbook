@@ -11,6 +11,7 @@ define([
             el: $('#sideNav'),
             template: _.template('<h3 id="addPlay"><i class="icon-plus"></i>Create New Play</h3>'),
             _playbookView: null,
+            _toolboxView: null,
 
             events: {
                 'click #addPlay': 'addPlay'
@@ -18,15 +19,13 @@ define([
 
             initialize: function(playbook){
                 this._playbookView = new PlaybookView(playbook);
+                this._toolboxView = new ToolboxView();
             },
 
             render: function(){
                 this.$el.prepend(this.template());
                 this.$el.prepend(this._playbookView.render());
-
-                var toolbox = new ToolboxView();
-                toolbox.render();
-                toolbox.addDummyPlayers();
+                this.$el.append(this._toolboxView.render());
             },
 
             addPlay: function(){
@@ -36,6 +35,7 @@ define([
 
             selectPlay: function(model){
                 this._playbookView.selectPlay(model);
+                this._toolboxView.selectPlay(model);
             }
         });
         return SideView;
