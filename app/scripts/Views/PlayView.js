@@ -10,6 +10,7 @@ define([
 
             _width: null,
             _height: null,
+            _context: null,
 
             initialize: function(model, width, height){
                 this._model = model;
@@ -19,15 +20,18 @@ define([
                 // Setup canvas
                 this.$el.width(this._width);
                 this.$el.height(this._height);
+                this._context = this.el.getContext('2d');
 
-                this.listenTo(this._model, 'destroy', function(){
-                    self.clearPlay();
-                });
+                this.listenTo(this._model, 'destroy', this.removeCanvas);
                 this.listenTo(this._model, 'change', this.render);
             },
 
             render: function(){
                 return this.$el;
+            },
+
+            removeCanvas: function(){
+                this.$el.remove();
             }
         });
         return PlayView;

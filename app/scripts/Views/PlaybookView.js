@@ -51,12 +51,22 @@ define([
                 if(_.isUndefined(play)){
                     return;
                 }
-                var newPlay = new Play(play.omit(['id','cid']));
+
+                // Make a copy of the play without the IDs or players relation
+                var newPlay = new Play(play.omit(['id','cid','players']));
+
+                // Clone each player over and set the to the ID of the new play.
+                // Backbone (relational) will automatically update the ID in the player relation
+                play.get('players').forEach(function(player){
+                    var newPlayer = player.clone();
+                    newPlayer.set('onPlay', newPlay.cid);
+                });
+
                 newPlay.set('name', play.get('name') + ' (copy)');
                 newPlay.set('selected', false);
+
                 this.collection.add(newPlay);
                 newPlay.save();
-
             }
         });
         return PlaybookView;
