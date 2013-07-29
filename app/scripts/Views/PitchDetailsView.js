@@ -6,7 +6,7 @@ define([
 
             className: 'pitchDetails',
             tagName: 'div',
-            template: _.template('<h2><input type="text" value="<%= name %>"/></h2>'),
+            template: _.template('<h2><input type="text" value="<%= name %>"/></h2> <div id="playTypeToggle"><em><%= type %></em></div>'),
             _model: null,
 
             initialize: function(model){
@@ -15,7 +15,8 @@ define([
             },
 
             events: {
-                'change input': 'renamePlay'
+                'change input': 'renamePlay',
+                'click #playTypeToggle' : 'togglePlayType'
             },
 
             render: function(){
@@ -24,6 +25,16 @@ define([
 
             renamePlay: function(event){
                 this._model.set('name', event.target.value);
+                this._model.save();
+            },
+
+            togglePlayType: function(){
+                if(this._model.get('type') == 'football'){
+                    this._model.set('type', 'ultimate');
+                }
+                else {
+                    this._model.set('type', 'football');
+                }
                 this._model.save();
             }
         });

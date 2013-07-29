@@ -7,7 +7,7 @@ define([
         var PlaybookView = Backbone.View.extend({
 
             el: $('#playbook'),
-            template: _.template('<h3>New Playbook <em>football</em></h3><ul id="playlist"></ul>'),
+            template: _.template('<h3>New Playbook</h3><ul id="playlist"></ul>'),
             collection: null,
 
             events: {

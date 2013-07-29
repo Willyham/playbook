@@ -37,13 +37,13 @@ define([
             },
 
             //TODO: move players into player factory.
-            _changePlayType: function(playType){
+            _changePlayType: function(playModel){
 
                 // Clear current player list
                 this.$el.find('#playerList').empty();
-
                 var newModels = [];
-                switch(playType){
+                var type = playModel.get('type');
+                switch(type){
                     case 'football':
                         var offence = new Player({
                             type: 'offence'
@@ -53,11 +53,11 @@ define([
                         });
                         newModels.push(offence, defence);
                         break;
-                    case 'basketball':
-                        var guard = new Player({
-                            type: 'guard'
+                    case 'ultimate':
+                        var handler = new Player({
+                            type: 'handler'
                         });
-                        newModels.push(guard);
+                        newModels.push(handler);
                 }
 
                 // Reset the collection, which will call 'add' for new models
@@ -84,7 +84,7 @@ define([
                 var newPlayType = this._playModel.get('type');
                 if(this._playType !== newPlayType){
                     this._playType = newPlayType;
-                    this._changePlayType(newPlayType);
+                    this._changePlayType(this._playModel);
                 }
             }
       });
