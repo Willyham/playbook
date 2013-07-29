@@ -27,6 +27,12 @@ define([
             },
 
             render: function(){
+                var self = this;
+                this._model.get('players').forEach(function(player){
+                    self._context.beginPath();
+                    self._context.arc(player.get('x'), player.get('y'), 2, 0, 2 * Math.PI, false);
+                    self._context.fill();
+                });
                 return this.$el;
             },
 

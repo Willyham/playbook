@@ -73,11 +73,9 @@ define([
                     return;
                 }
 
-                debugger;
                 var newPlayer = player.clone();
                 newPlayer.set('onPlay', this._playModel.get('id'));
                 this._playModel.save();
-
             },
 
             selectPlay: function(playModel){

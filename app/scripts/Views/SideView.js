@@ -4,8 +4,7 @@ define([
     'backbone',
     'Views/PlaybookView',
     'Views/ToolboxView',
-    'Models/Play',
-    'Models/Player'], function($,_,Backbone, PlaybookView, ToolboxView, Play, Player){
+    'Models/Play'], function($,_,Backbone, PlaybookView, ToolboxView, Play){
         var SideView = Backbone.View.extend({
 
             el: $('#sideNav'),
