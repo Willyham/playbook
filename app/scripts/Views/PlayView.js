@@ -27,10 +27,19 @@ define([
                 // Setup canvas
                 this.$el.width(this.options.width);
                 this.$el.height(this.options.height);
+                
+                // Set the dimensions on the underlying DOM element or the actual canvas wont scale.
+                this.el.width = this.options.width;
+                this.el.height = this.options.height;
+
                 this._context = this.el.getContext('2d');
 
                 this.listenTo(this.model, 'destroy', this.removeCanvas);
                 this.listenTo(this.model, 'change', this.render);
+
+                //Listen to adding or removing players
+                this.listenTo(this.model.players, 'add', this.render);
+                this.listenTo(this.model.players, 'remove', this.render);
             },
 
             /**
@@ -41,7 +50,7 @@ define([
                 var self = this;
                 this.model.players.forEach(function(player){
                     self._context.beginPath();
-                    self._context.arc(player.get('x'), player.get('y'), 2, 0, 2 * Math.PI, false);
+                    self._context.arc(player.get('x'), player.get('y'), 20, 0, 2 * Math.PI, false);
                     self._context.fill();
                 });
                 return this.$el;

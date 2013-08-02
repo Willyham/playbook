@@ -4,8 +4,8 @@ define([
     'backbone'], function($,_,Backbone){
         var Player = Backbone.Model.extend({
             defaults: {
-                x: 0,
-                y: 0,
+                x: 500,
+                y: 500,
                 type: 'offence'
             }
         });
