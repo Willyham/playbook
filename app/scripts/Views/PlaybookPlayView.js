@@ -9,6 +9,9 @@ define([
             model: null,
 
             initialize: function(){
+                if(!this.model){
+                    throw new Error('PlaybookPlayView requires a Play model');
+                }
                 this.listenTo(this.model, 'change', this.render);
             },
 

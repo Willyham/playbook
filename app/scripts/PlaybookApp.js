@@ -13,7 +13,9 @@ define([
                 var playbook = new Playbook();
 
                 // Create and render side view
-                var sideView = new SideView(playbook);
+                var sideView = new SideView({
+                    collection: playbook
+                });
                 sideView.render();
 
                 // Create and render the pitch view

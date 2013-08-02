@@ -8,32 +8,42 @@ define([
 
             el: $('#playbook'),
             template: _.template('<h3>New Playbook</h3><ul id="playlist"></ul>'),
-            collection: null,
 
             events: {
                 'click .copy': 'copyPlay'
             },
 
-            initialize: function(playbook){
-                this.collection = playbook;
-                this.listenTo(this.collection, 'add', this.renderPlay);
+            initialize: function(){
+                if(!this.collection){
+                    throw new Error('PlaybookView needs a Playbook collection');
+                }
+                this.listenTo(this.collection, 'add', this.renderPlayItem);
             },
 
+            /**
+             * Initially draw just a list to contain the playbook
+             * @returns {jQuery}
+             */
             render: function(){
                 return this.$el.html(this.template());
             },
 
-            renderPlay: function(model){
+            /**
+             * Render a play as an item in the list.
+             * @param {Play} model The play to render
+             */
+            renderPlayItem: function(model){
                 var listItem = new PlaybookPlayView({
                     model: model
                 });
                 this.$el.find('#playlist').append(listItem.render());
             },
 
-            addPlay: function(model){
-                this.collection.create(model);
-            },
-
+            /**
+             * Set a play as selected, deselecting the current selected play
+             * if one exists. Then save both models.
+             * @param {Play} model
+             */
             selectPlay: function(model){
                 this.collection.forEach(function(play){
                     play.set('selected', false);
@@ -45,6 +55,12 @@ define([
                 model.save();
             },
 
+            /**
+             * Copy a play. Get a model from the ID in the DOM,
+             * then clone it by creating a new model without the IDs,
+             * Finally, rename the play, add it to the collection and save.
+             * @param event
+             */
             copyPlay: function(event){
                 var targetPlayID = $(event.target).data('id');
                 var play = this.collection.get(targetPlayID);

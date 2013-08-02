@@ -4,31 +4,42 @@ define([
     'backbone'], function($,_,Backbone){
         var PlayView = Backbone.View.extend({
 
-            className: 'playView',
-            tagName: 'canvas',
-            _model: null,
-
-            _width: null,
-            _height: null,
-            _context: null,
-
-            initialize: function(model, width, height){
-                this._model = model;
-                this._width = width;
-                this._height = height;
-
-                // Setup canvas
-                this.$el.width(this._width);
-                this.$el.height(this._height);
-                this._context = this.el.getContext('2d');
-
-                this.listenTo(this._model, 'destroy', this.removeCanvas);
-                this.listenTo(this._model, 'change', this.render);
+            defaults: {
+                width: 500,
+                height: 500
             },
 
+            className: 'playView',
+            tagName: 'canvas',
+
+            /**
+             * The canvas 2d context
+             */
+            _context: null,
+
+            /**
+             * Initialise the PlayView, set the height and width of the canvas to fill the parent
+             */
+            initialize: function(){
+                if(!this.model){
+                    throw new Error('PlayView needs a Play model');
+                }
+                // Setup canvas
+                this.$el.width(this.options.width);
+                this.$el.height(this.options.height);
+                this._context = this.el.getContext('2d');
+
+                this.listenTo(this.model, 'destroy', this.removeCanvas);
+                this.listenTo(this.model, 'change', this.render);
+            },
+
+            /**
+             * Draw each player on the canvas.
+             * @returns {*}
+             */
             render: function(){
                 var self = this;
-                this._model.get('players').forEach(function(player){
+                this.model.get('players').forEach(function(player){
                     self._context.beginPath();
                     self._context.arc(player.get('x'), player.get('y'), 2, 0, 2 * Math.PI, false);
                     self._context.fill();
