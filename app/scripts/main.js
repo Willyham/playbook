@@ -19,9 +19,6 @@ require.config({
         },
         localstorage: {
             deps: ['backbone']
-        },
-        relational: {
-            deps: ['backbone']
         }
     },
     paths: {
@@ -29,8 +26,7 @@ require.config({
         backbone: '../bower_components/backbone-amd/backbone',
         underscore: '../bower_components/underscore-amd/underscore',
         bootstrap: 'vendor/bootstrap',
-        localstorage: '../bower_components/backbone.localStorage/backbone.localStorage',
-        relational: '../bower_components/backbone-relational/backbone-relational'
+        localstorage: '../bower_components/backbone.localStorage/backbone.localStorage'
     }
 });
 

@@ -102,7 +102,7 @@ define([
                 }
 
                 var newPlayer = player.clone();
-                newPlayer.set('onPlay', this._playModel.get('id'));
+                this._playModel.players.push(newPlayer);
                 this._playModel.save();
             },
 

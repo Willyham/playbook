@@ -39,7 +39,7 @@ define([
              */
             render: function(){
                 var self = this;
-                this.model.get('players').forEach(function(player){
+                this.model.players.forEach(function(player){
                     self._context.beginPath();
                     self._context.arc(player.get('x'), player.get('y'), 2, 0, 2 * Math.PI, false);
                     self._context.fill();

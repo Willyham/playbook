@@ -2,23 +2,39 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'Models/Player',
-    'relational'], function($,_,Backbone,Player){
-        var Play = Backbone.RelationalModel.extend({
-            defaults: {
-                name: 'New Play',
-                type: 'football',
-                selected: false
+    'Collections/Players'], function($,_,Backbone,Players){
+        var Play = Backbone.Model.extend({
+
+            constructor: function(){
+                this.players = new Players();
+                Backbone.Model.apply(this, arguments);
             },
-            relations: [{
-                type: Backbone.HasMany,
-                key: 'players',
-                relatedModel: Player,
-                reverseRelation: {
-                    key: 'onPlay',
-                    includeInJSON: 'id'
+
+            defaults: function(){
+                return {
+                    name: 'New Play',
+                        type: 'football',
+                    selected: false
                 }
-            }]
+            },
+
+            parse: function(attributes){
+                if(attributes.players){
+                    this.players.reset(attributes.players);
+                    attributes = _.omit(attributes, 'players');
+                }
+                return attributes;
+            },
+
+            toJSON: function(){
+                var attributes = _.clone(this.attributes);
+                var playersJSON = this.players.toJSON();
+                if(!_.isEmpty(playersJSON)){
+                    attributes.players = playersJSON;
+                }
+                return attributes;
+            }
+
         });
         return Play;
     }
