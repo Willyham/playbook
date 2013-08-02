@@ -116,13 +116,15 @@ define([
                     //Stop listening to a model we aren't drawing.
                     this._playModel.stopListening();
                 }
+                //Listen to changes to the model while we're showing it
                 this._playModel = play;
                 this.listenTo(this._playModel, 'change:type', this._changePlayType);
-                var newPlayType = this._playModel.get('type');
-                if(this._playType !== newPlayType){
-                    this._playType = newPlayType;
-                    this._changePlayType(this._playModel);
-                }
+                this.listenTo(this._playModel, 'destroy', this._emptyToolbox);
+                this._changePlayType(this._playModel);
+            },
+
+            _emptyToolbox: function(){
+                this.$el.find('#playerList').empty();
             }
       });
         return ToolboxView;
