@@ -1,7 +1,9 @@
 define([
     'jquery',
     'underscore',
-    'backbone'], function($,_,Backbone){
+    'backbone',
+    'raphael',
+    'Views/Players/PlayerView'], function($, _, Backbone, Raphael, PlayerView){
         var PlayView = Backbone.View.extend({
 
             defaults: {
@@ -10,7 +12,6 @@ define([
             },
 
             className: 'playView',
-            tagName: 'canvas',
 
             /**
              * The canvas 2d context
@@ -27,12 +28,10 @@ define([
                 // Setup canvas
                 this.$el.width(this.options.width);
                 this.$el.height(this.options.height);
-                
+
                 // Set the dimensions on the underlying DOM element or the actual canvas wont scale.
                 this.el.width = this.options.width;
                 this.el.height = this.options.height;
-
-                this._context = this.el.getContext('2d');
 
                 this.listenTo(this.model, 'destroy', this.removeCanvas);
                 this.listenTo(this.model, 'change', this.render);
@@ -40,6 +39,18 @@ define([
                 //Listen to adding or removing players
                 this.listenTo(this.model.players, 'add', this.render);
                 this.listenTo(this.model.players, 'remove', this.render);
+
+                this._paper = Raphael(this.el, this.$el.width(), this.$el.height()-50);
+            },
+
+            renderPlayer: function(player){
+                debugger;
+                // Create a new instance of the view, and render
+                new PlayerView({
+                    paper: this._paper,
+                    model: player,
+                    saveOnChange: false
+                }).render();
             },
 
             /**
@@ -49,9 +60,7 @@ define([
             render: function(){
                 var self = this;
                 this.model.players.forEach(function(player){
-                    self._context.beginPath();
-                    self._context.arc(player.get('x'), player.get('y'), 20, 0, 2 * Math.PI, false);
-                    self._context.fill();
+                    self.renderPlayer(player);
                 });
                 return this.$el;
             },

@@ -7,7 +7,7 @@ define([
     'Models/Play'], function($,_,Backbone, PlaybookView, ToolboxView, Play){
         var SideView = Backbone.View.extend({
 
-            el: $('#sideNav'),
+            el: $('#playbookContainer'),
             template: _.template('<h3 id="addPlay"><i class="icon-plus"></i>Create New Play</h3>'),
             _playbookView: null,
             _toolboxView: null,

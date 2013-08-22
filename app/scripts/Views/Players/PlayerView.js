@@ -2,7 +2,7 @@ define([
     'jquery',
     'underscore',
     'backbone'], function($,_,Backbone){
-        var PlayerView = Backbone.View.extend({
+        var PlayerView = Backbone.RaphaelTransformableView.extend({
 
             className: 'player',
             template: _.template('<%= type %>'),
@@ -14,10 +14,18 @@ define([
             },
 
             render: function(){
-                this.$el.append(this.template({
-                    type: this.model.get('type')
-                }));
-                return this.$el;
+                var element;
+                switch(this.model.get('type')){
+                    case 'rectangle':
+                        element = this.options.paper.rect(this.model.get('x'), this.model.get('y'), this.model.get('width'),this.model.get('height'));
+                        break;
+                    case 'circle':
+                        element = this.options.paper.circle(this.model.get('x'), this.model.get('y'), this.model.get('width')/2);
+                        break;
+                }
+                this.initElement(element, {
+                    keepRatio: [ 'axisX', 'axisY', 'bboxCorners', 'bboxSides' ]
+                });
             }
         });
         return PlayerView;

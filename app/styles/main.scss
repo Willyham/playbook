@@ -2,35 +2,31 @@ $iconSpritePath: '../bower_components/sass-bootstrap/img/glyphicons-halflings.pn
 $iconWhiteSpritePath: '../bower_components/sass-bootstrap/img/glyphicons-halflings-white.png';
 @import '../bower_components/sass-bootstrap/lib/bootstrap';
 
-body{
-    margin: 0;
+html, body {
     padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body{
     font-family: "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
     overflow: hidden;
-    background: url(/../images/background.png);
     font-family: "Lucida Grande", "Helvetica Neue", Helvetica, sans-serif;
     text-rendering: optimizelegibility;
     -webkit-font-smoothing: antialiased;
-    color: #eeeeee;
+    color: rgba( 0, 0, 0, 0.65 );
+}
 
+header{
+    height: 40px;
+    border-bottom: 1px #eeeeee solid;
+    padding-left: 20px;
+    color: rgba( 0, 0, 0, 0.65 );
 
-    & header{
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 50px;
-        background: #3c3d47 url(/../images/header_background.png);
-        border-bottom: 1px solid rgba(0,0,0,0.5);
-        -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-        box-shadow: 0 1px 0 rgba(255,255,255,0.1);
-
-        & h1{
-            font-size: 20px;
-            text-align: left;
-            color: #FEFEFE;
-            padding: 0 0 0 20px;
-        }
+    & h1{
+        font-size: 20px;
+        text-align: left;
     }
 }
 
@@ -40,52 +36,48 @@ body{
 }
 
 #sideNav {
-    position: fixed;
-    top: 51px;
-    left: 0;
-    width: 286px;
-    padding: 10px 0 25px 0;
+    float: left;
+    width: 15%;
+    box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2);
     min-height: 700px;
+    z-index: 1000;
 
     & h3{
-        padding-left: 25px;
+        padding-left: 20px;
         display: block;
         line-height: 29px;
-        color: #fff;
+        color: #444444;
         font-size: 12px;
         font-weight: bold;
-        text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+        text-shadow: 0 0px 0 rgba(0,0,0,0.2);
         text-transform: uppercase;
+        border-bottom: 1px #eeeeee solid;
     }
 
     & em{
-        color: #a7a7b3;
+        color: #555555;
         font-size: 11px;
         font-weight: 400;
-        margin-left: 8px;
     }
 
     & #playbook {
 
         & .selected{
-            background: url(/../images/sidebar_hover.png) repeat-x;
+            #background: url(/../images/sidebar_hover.png) repeat-x;
+            background-color: #eeeeee;
+        }
+
+        & .selected:hover{
+            background-color: #dddddd;
         }
 
         & #addPlay{
             padding-left: 20px;
-
-            & i{
-                margin-right: 20px;
-            }
-
-            &:hover{
-                cursor: pointer;
-                background: url(/../images/sidebar_hover.png) repeat-x;
-                color: #228b22;
-            }
+            cursor: pointer;
         }
 
         & ul{
+            position: relative;
             list-style-type: none;
             margin: 0;
 
@@ -95,37 +87,27 @@ body{
                 line-height: 29px;
 
                 &:hover{
-                    background: url(/../images/sidebar_hover.png) repeat-x;
+                   background-color: #DDD;
                 }
 
                 & a{
-                    color: #fdfdfe;
-                    text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+                    color: #3e9348;
                     text-decoration: none;
                     font-size: 13px;
-                    font-weight: normal;
-                }
-
-                & .playTypeIcon{
-                    margin-left: 20px;
-                    margin-right: 20px;
-                    width: 17px;
-                    height: 17px;
-                    cursor: pointer;
-                    -webkit-filter: drop-shadow( 3px 3px 5px rgba(0,0,0,0.2) );
+                    font-weight: bold;
                 }
 
                 & .playActions{
                     position: absolute;
-                    right: 20px;
+                    right: 0;
                 }
 
                 & .playAction{
                     cursor: pointer;
+                    margin-right: 10px;
 
                     &:hover{
-                        color: deepskyblue;
-                        font-weight: bold;
+                        color: #00A000;
                     }
 
                     &.delete:hover{
@@ -145,6 +127,14 @@ body{
     }
 }
 
+.playTypeIcon{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+}
+
 .player {
     background: #efefef;
     width: 40px;
@@ -153,20 +143,15 @@ body{
 }
 
 #pitch {
-    position: absolute;
-    top: 51px;
-    left: 286px;
     width: 85%;
     height: 100%;
     background-color: #00A000;
+    float: right;
 
     & .pitchDetails {
-        display: inline-block;
-        position: absolute;
-        width: 100%;
-        padding: 10px;
-        top: 0;
-        z-index: 9000;
+        width: 10%;
+        z-index: 100;
+        padding-left: 20px;
 
         & input {
             box-shadow: none;

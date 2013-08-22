@@ -3,13 +3,15 @@ define([
     'underscore',
     'backbone',
     'Views/PitchDetailsView',
-    'Views/PlayView'], function($,_,Backbone, PitchDetailsView, PlayView){
+    'Views/PlayView',
+    'raphael'], function($,_,Backbone, PitchDetailsView, PlayView, Raphael){
         var PitchView = Backbone.View.extend({
 
             el: $('#pitch'),
             _model: null,
             _pitchDetailsView: null,
             _playView: null,
+
 
             /**
              * Initialise the PitchView.
